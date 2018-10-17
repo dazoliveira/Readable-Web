@@ -1,8 +1,10 @@
 export const RECEIVE_POSTS = "REICIVE_POSTS"
 
-export function posts(posts){
+export function receivePosts(posts){
     return{
         type: RECEIVE_POSTS,
         posts
     }
 }
+
+

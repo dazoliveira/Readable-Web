@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import * as ReadableAPI from './ReadableAPI'
+import * as ReadableAPI from './utils/ReadableAPI'
 
 class App extends Component {
 
   state={
-    post: {}
+    categories: {}
   }
 
   componentDidMount(){
-    ReadableAPI.getAll().then((post) => {
-      this.setState({ post: post })
+    ReadableAPI.getAllCategories().then((categories) => {
+      this.setState({ categories: categories })
     })
   }
 
   render() {
-    console.log('LOG -> ', this.state.post)
+    console.log('LOG -> ', this.state.categories)
 
     return (
       <div className="container">
