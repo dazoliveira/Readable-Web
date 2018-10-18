@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import * as ReadableAPI from './utils/ReadableAPI'
+import { connect } from 'react-redux'
+import { handlePosts, handleCategories } from './actions/shared'
+import Dashboard from './components/Dashboard'
 
 class App extends Component {
 
@@ -8,20 +10,17 @@ class App extends Component {
   }
 
   componentDidMount(){
-    ReadableAPI.getAllCategories().then((categories) => {
-      this.setState({ categories: categories })
-    })
+    this.props.dispatch(handlePosts())
+    this.props.dispatch(handleCategories())
   }
 
   render() {
-    console.log('LOG -> ', this.state.categories)
-
     return (
-      <div className="container">
-        <h3>Reads Started</h3>
+      <div>
+        <Dashboard />
       </div>
     );
   }
 }
 
-export default App;
+export default connect()(App);
