@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { handlePosts, handleCategories } from './actions/shared'
-import Dashboard from './components/Dashboard'
+import { handlePosts, handleCategories } from './actions/shared';
+import PostList from './components/PostList';
+import Sidebar from './components/Sidebar';
+import Nav from './components/Nav'
 
 class App extends Component {
 
-  state={
-    categories: {}
-  }
-
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch(handlePosts())
     this.props.dispatch(handleCategories())
   }
 
   render() {
     return (
-      <div>
-        <Dashboard />
+      <div className='container'>
+        <Nav />
+        <PostList />
+        <Sidebar />
       </div>
     );
   }

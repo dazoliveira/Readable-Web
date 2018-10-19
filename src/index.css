@@ -43,6 +43,10 @@ a {
   text-align: center;
 }
 
+.left {
+  text-align:left;
+}
+
 .active {
   font-weight: bold;
 }
