@@ -8,7 +8,8 @@ class Sidebar extends Component {
         const { categories } = this.props
 
         return (
-            <div className='left'>
+            <div className='right'>
+                <h4>Categories</h4>
                 <ul className='dashboard-list'>
                     {categories.map((cat, i) => (
                         <li key={cat.name}>

@@ -16,8 +16,8 @@ class App extends Component {
     return (
       <div className='container'>
         <Nav />
-        <PostList />
         <Sidebar />
+        <PostList />
       </div>
     );
   }

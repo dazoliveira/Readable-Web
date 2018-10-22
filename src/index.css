@@ -43,8 +43,8 @@ a {
   text-align: center;
 }
 
-.left {
-  text-align:left;
+.right {
+  text-align:right;
 }
 
 .active {
@@ -113,12 +113,13 @@ li {
   margin: 10px 0;
 }
 .post-icons {
+  margin: 15px 15px 0 5px;
   display: flex;
   align-items: center;
 }
 .post-icons > span {
   color: #969696;
-  margin: 0 15px 0 5px;
+  margin: 15px 15px 0 5px;
   font-size: 18px !important;
 }
 .post-icon {
