@@ -3,17 +3,27 @@ import { connect } from 'react-redux'
 // import { TiArrowBackOutline,TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
 
 class Post extends Component {
-    handUp(e){
+    handUp(e) {
         e.preventDefault()
 
         // do something to add vote
     }
 
-    hadn
+    handDown(e){
+        e.preventDefault()
+
+        // subtract vote
+    }
 
     render() {
         const { id, author, title, commentCount, voteScore, timestamp } = this.props
-        console.log('LOG -> ', this.props.posts)
+
+        if (id === null) {
+            return (
+                <p>No posts was found</p>
+            )
+        }
+
         return (
             <div className='post'>
                 <div className='post-info'>
@@ -21,7 +31,7 @@ class Post extends Component {
                     <span>Author: {author}</span>
                     <div className='post-icons'>
                         <span>{`Comments: ${commentCount}`}</span>
-                            <span>{`Votes: ${voteScore}`}</span>
+                        <span>{`Votes: ${voteScore}`}</span>
                         <button onClick={this.handUp}>Up</button>
                         <button onClick={this.handDown}>Down</button>
                     </div>

@@ -4,13 +4,34 @@ import Post from './Post'
 
 class PostList extends Component {
 
-    sortByDate(e){
-        e.preventDefault()
+    state = {
+        postsSortByDate: [],
+        postsSortByScore: []
+    }
 
+    componentWillReceiveProps(nextProps) {
+        let sortByDate = []
+        let sortByScore = []
+        if(nextProps.posts){
+            sortByDate = Object.keys(nextProps.posts).sort((a, b) => nextProps.posts[b].timestamp - nextProps.posts[a].timestamp)
+            this.setState({postsSortByDate:  sortByDate})
+
+            sortByScore = Object.keys(nextProps.posts).sort((a, b) => nextProps.posts[b].voteScore - nextProps.posts[a].voteScore)
+            this.setState({postsSortByScore:  sortByScore})
+        }
+        console.log(this.state.postsSortByScore)
+    }
+
+
+    sortByDate = (posts) => {
+
+        // console.log('check -> ', posts)
+        // posts.sort((a, b) =>  posts[a].timestamp - posts[b].timestamp)
+        // this.setState({ postsSortByTimestamp:  []})
         //do somehting to order by date
     }
 
-    sortByScore(e){
+    sortByScore(e) {
         e.preventDefault()
 
         //do something to order by Score
@@ -24,8 +45,8 @@ class PostList extends Component {
                 <h3>Time Line</h3>
                 <div>
                     Srot by:
-                <button onClick={this.sortByScore}>Score</button>
-                    <button onClick={this.sortByDate}>Date</button>
+                    <button onClick={({ posts }) => this.sortByDate(posts)}>Date</button>
+                    <button onClick={this.sortByScore}>Score</button>
                 </div>
                 <ul className='dashboard-list'>
                     {posts.map((post, i) => (
