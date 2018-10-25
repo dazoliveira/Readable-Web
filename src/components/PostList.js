@@ -8,7 +8,7 @@ class PostList extends Component {
     state = {
         postsSortByDate: [],
         postsSortByScore: [],
-        order: false,
+        order: '',
         posts: []
     }
 
@@ -26,20 +26,19 @@ class PostList extends Component {
 
 
     sortByDate = () => {
-        const sort = this.state.postsSortByDate.map((v, i) => this.props.posts[i])
-        this.setState({ posts: sort, order: true })
-        // const { dispatch } = this.props
-        // dispatch(sortPostByDate())
-        // console.log('check -> ', posts)
-        // posts.sort((a, b) =>  posts[a].timestamp - posts[b].timestamp)
-        // this.setState({ postsSortByTimestamp:  []})
-        //do somehting to order by date
+        // const sort = this.state.postsSortByDate.map((v, i) => this.props.posts[i])
+        // console.log('LOG Date-> ', sort )
+        // this.setState({ posts: sort, order: 'date' })
+        // console.log('Check Posts -> ', this.state.posts)
+        this.setState({ order: 'date' })
     }
 
-    sortByScore(e) {
-        e.preventDefault()
-
+    sortByScore = () => {
+        // const sort = this.state.postsSortByScore.map((v, i) => this.props.posts[i])
+        // console.log('LOG Score-> ', sort )
+        // this.setState({ posts: sort, order: 'score' })
         //do something to order by Score
+        this.setState({ order: 'score' })
     }
 
     render() {
@@ -68,18 +67,22 @@ class PostList extends Component {
                     <button onClick={this.sortByScore}>Score</button>
                 </div>
                 <ul className='dashboard-list'>
-                    {this.state.order
-                        ? orderTest
-                        :
-                        posts.map((post, i) => (
-                            <li key={post.id}>
+                    {this.state.order === 'score' &&
+                        this.state.postsSortByScore.map((v) => (
+                            <li key={v}>
                                 <Post
-                                    id={post.id}
-                                    author={post.author}
-                                    title={post.title}
-                                    commentCount={post.commentCount}
-                                    voteScore={post.voteScore}
-                                    timestamp={post.timestamp}
+                                    author={posts[v].author}
+                                    title={posts[v].title}
+                                />
+                            </li>
+                        ))}
+
+                    {this.state.order === 'date' &&
+                        this.state.postsSortByDate.map((v) => (
+                            <li key={v}>
+                                <Post
+                                    author={posts[v].author}
+                                    title={posts[v].title}
                                 />
                             </li>
                         ))}
