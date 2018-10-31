@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { votePost } from '../actions/shared'
 // import { TiArrowBackOutline,TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
 
 class Post extends Component {
-    handUp(e) {
+    handUp(e, id, option) {
         e.preventDefault()
-
-        // do something to add vote
+        this.props.dispatch(votePost(id, option))
     }
 
-    handDown(e){
+    handDown(e) {
         e.preventDefault()
 
         // subtract vote
     }
 
     render() {
-        const { id, author, title, commentCount, voteScore, timestamp } = this.props
+        const { id, author, title, commentCount, voteScore } = this.props
 
         if (id === null) {
             return (
@@ -32,7 +32,7 @@ class Post extends Component {
                     <div className='post-icons'>
                         <span>{`Comments: ${commentCount}`}</span>
                         <span>{`Votes: ${voteScore}`}</span>
-                        <button onClick={this.handUp}>Up</button>
+                        <button onClick={(e) => this.handUp(e, id, 'upVote')}>Up</button>
                         <button onClick={this.handDown}>Down</button>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
-import { getAllPosts, getAllCategories } from '../utils/ReadableAPI'
-import { receivePosts } from './posts'
+import { getAllPosts, getAllCategories, updateVote } from '../utils/ReadableAPI'
+import { receivePosts, setVote } from './posts'
 import { receiveCategories } from './categories'
 // import { receiveComments } from './comments'
 
@@ -7,9 +7,20 @@ import { receiveCategories } from './categories'
 export function handlePosts() {
     return (dispatch) => {
         return getAllPosts()
-            .then((posts) => dispatch(receivePosts(posts)))
+            .then((data) => dispatch(receivePosts(data)))
     }
 }
+
+
+export function votePost(id, option){
+    return (dispatch) => {
+        return updateVote(id, option)
+            .then((data) => {
+                dispatch(setVote(data))
+            })
+    }
+}
+
 
 export function handleCategories() {
     return (dispatch) => {

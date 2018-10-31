@@ -10,16 +10,30 @@ const headers = {
       'Authorization': token
 }
 
+
 export const getAllPosts = () =>
       fetch(`${api}/posts`, { headers })
             .then(res => res.json())
             .then(data => data)
 
 
+export const updateVote = (id, option) =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option })
+  }).then(res => res.json())
+    .then(data => data)
+
+
 export const getAllCategories = () =>
       fetch(`${api}/categories`, { headers })
             .then(res => res.json())
             .then(data => data)
+
 
 // export const get = (bookId) =>
 //   fetch(`${api}/books/${bookId}`, { headers })
@@ -40,14 +54,3 @@ export const getAllCategories = () =>
 //     },
 //     body: JSON.stringify({ shelf })
 //   }).then(res => res.json())
-
-// export const search = (query) =>
-//   fetch(`${api}/search`, {
-//     method: 'POST',
-//     headers: {
-//       ...headers,
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({ query })
-//   }).then(res => res.json())
-//     .then(data => data.books)

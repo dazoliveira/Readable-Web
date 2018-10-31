@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
-import { sortPostByDate } from '../actions/posts'
+import { sortPostByDate, sortPostByScore } from '../actions/posts'
 
 class PostList extends Component {
 
@@ -12,77 +12,48 @@ class PostList extends Component {
         posts: []
     }
 
-    componentWillReceiveProps(nextProps) {
-        let sortByDate = []
-        let sortByScore = []
-        if (nextProps.posts) {
-            sortByDate = Object.keys(nextProps.posts).sort((a, b) => nextProps.posts[b].timestamp - nextProps.posts[a].timestamp)
-            this.setState({ postsSortByDate: sortByDate })
+    componentDidMount() {
+        this.setState({ post: this.props.posts })
+    }
 
-            sortByScore = Object.keys(nextProps.posts).sort((a, b) => nextProps.posts[b].voteScore - nextProps.posts[a].voteScore)
-            this.setState({ postsSortByScore: sortByScore })
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.posts) {
+            this.setState({ posts: nextProps.posts })
         }
     }
 
-
     sortByDate = () => {
-        // const sort = this.state.postsSortByDate.map((v, i) => this.props.posts[i])
-        // console.log('LOG Date-> ', sort )
-        // this.setState({ posts: sort, order: 'date' })
-        // console.log('Check Posts -> ', this.state.posts)
-        this.setState({ order: 'date' })
+        const { posts } = this.state
+        const sorting = posts.sort((a, b) => b.timestamp - a.timestamp)
+        this.props.sortingPostsByDate(sorting)
     }
 
     sortByScore = () => {
-        // const sort = this.state.postsSortByScore.map((v, i) => this.props.posts[i])
-        // console.log('LOG Score-> ', sort )
-        // this.setState({ posts: sort, order: 'score' })
-        //do something to order by Score
-        this.setState({ order: 'score' })
+        const { posts } = this.state
+        const sorting = posts.sort((a, b) => b.voteScore - a.voteScore)
+        this.props.sortingPostsByScore(sorting)
     }
 
     render() {
         const { posts } = this.props
-
-
-        const orderTest = (this.state.posts).map((post, i) => (
-            <li key={post.id}>
-                <Post
-                    id={post.id}
-                    author={post.author}
-                    title={post.title}
-                    commentCount={post.commentCount}
-                    voteScore={post.voteScore}
-                    timestamp={post.timestamp}
-                />
-            </li>))
 
         return (
             <div className='center'>
                 <h3>Time Line</h3>
                 <div>
                     Srot by:
-                    {/* <button onClick={({ posts }) => this.sortByDate(posts)}>Date</button> */}
                     <button onClick={this.sortByDate}>Date</button>
                     <button onClick={this.sortByScore}>Score</button>
                 </div>
                 <ul className='dashboard-list'>
-                    {this.state.order === 'score' &&
-                        this.state.postsSortByScore.map((v) => (
-                            <li key={v}>
+                    {posts.map((v, i) => (
+                            <li key={i}>
                                 <Post
-                                    author={posts[v].author}
-                                    title={posts[v].title}
-                                />
-                            </li>
-                        ))}
-
-                    {this.state.order === 'date' &&
-                        this.state.postsSortByDate.map((v) => (
-                            <li key={v}>
-                                <Post
-                                    author={posts[v].author}
-                                    title={posts[v].title}
+                                    author={v.author}
+                                    title={v.title}
+                                    voteScore={v.voteScore}
+                                    commentCount={v.commentCount}
+                                    id={v.id}
                                 />
                             </li>
                         ))}
@@ -100,4 +71,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(PostList)
+const mapDispatchToProps = dispatch => ({
+     sortingPostsByDate: payload => dispatch(sortPostByDate(payload)),
+     sortingPostsByScore: payload => dispatch(sortPostByScore(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostList)
