@@ -4,6 +4,7 @@ import { handlePosts, handleCategories } from './actions/shared';
 import PostList from './components/PostList';
 import Sidebar from './components/Sidebar';
 import Nav from './components/Nav'
+import NewPost from './components/NewPost'
 
 class App extends Component {
 
@@ -17,7 +18,8 @@ class App extends Component {
       <div className='container'>
         <Nav />
         <Sidebar />
-        <PostList />
+        {/* <PostList /> */}
+        <NewPost />
       </div>
     );
   }

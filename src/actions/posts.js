@@ -2,6 +2,7 @@ export const RECEIVE_POSTS = "REICIVE_POSTS"
 export const SORT_POST_BY_DATE = "SORT_POST_BY_DATE"
 export const SORT_POST_BY_SCORE = "SORT_POST_BY_SCORE"
 export const UPDATE_VOTE_SCORE = "UPDATE_VOTE_SCORE"
+export const ADD_POST = "ADD_POST"
 
 
 export function receivePosts(posts) {
@@ -28,6 +29,13 @@ export function sortPostByScore(posts) {
 export function setVote(post){
     return {
         type: UPDATE_VOTE_SCORE,
+        post,
+    }
+}
+
+export function setPost(post){
+    return {
+        type: ADD_POST,
         post,
     }
 }
