@@ -4,15 +4,10 @@ import { votePost } from '../actions/shared'
 // import { TiArrowBackOutline,TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
 
 class Post extends Component {
-    handUp(e, id, option) {
+
+    toggleVote(e, id, option) {
         e.preventDefault()
         this.props.dispatch(votePost(id, option))
-    }
-
-    handDown(e) {
-        e.preventDefault()
-
-        // subtract vote
     }
 
     render() {
@@ -32,8 +27,8 @@ class Post extends Component {
                     <div className='post-icons'>
                         <span>{`Comments: ${commentCount}`}</span>
                         <span>{`Votes: ${voteScore}`}</span>
-                        <button onClick={(e) => this.handUp(e, id, 'upVote')}>Up</button>
-                        <button onClick={this.handDown}>Down</button>
+                        <button onClick={(e) => this.toggleVote(e, id, 'upVote')}>Up</button>
+                        <button onClick={(e) => this.toggleVote(e, id, 'downVote')}>Down</button>
                     </div>
                 </div>
             </div>

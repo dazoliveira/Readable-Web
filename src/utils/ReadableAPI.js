@@ -18,21 +18,35 @@ export const getAllPosts = () =>
 
 
 export const updateVote = (id, option) =>
-  fetch(`${api}/posts/${id}`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ option })
-  }).then(res => res.json())
-    .then(data => data)
+      fetch(`${api}/posts/${id}`, {
+            method: 'POST',
+            headers: {
+                  ...headers,
+                  'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ option })
+      }).then(res => res.json())
+            .then(data => data)
+
+
+export const addPost = (post) =>
+      fetch(`${api}/posts`, {
+            method: 'POST',
+            headers: {
+                  ...headers,
+                  'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(post)
+      }).then(res => res.json())
+            .then(data => data)
 
 
 export const getAllCategories = () =>
       fetch(`${api}/categories`, { headers })
             .then(res => res.json())
             .then(data => data)
+
+
 
 
 // export const get = (bookId) =>
