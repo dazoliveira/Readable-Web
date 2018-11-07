@@ -15,11 +15,8 @@ export default function posts(state = [], action) {
                 ...state,
                 [Object.keys({ ...state }).filter(i => state[i].id === action.post.id)]: action.post
             }
-        case ADD_POST:{
-            return{
-                ...state.map(i => state.i !== action.i && state.concat(action.post))
-            }
-        }
+        case ADD_POST:
+            return state.concat(action.post)
         default:
             return state
     }
