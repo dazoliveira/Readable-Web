@@ -12,7 +12,7 @@ class NewPost extends Component {
             title: '',
             body: '',
             author: '',
-            category: 'Udacity',
+            category: '',
         }
     }
 

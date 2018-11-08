@@ -1,12 +1,9 @@
 import { RECEIVE_COMMENTS } from '../actions/comments'
 
-export default function posts(state = {}, action) {
+export default function comments(state = [], action) {
     switch (action.type) {
         case RECEIVE_COMMENTS:
-            return {
-                ...state,
-                ...action.comments
-            }
+            return action.comments
         default:
             return state
     }

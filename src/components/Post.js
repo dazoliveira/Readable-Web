@@ -36,10 +36,4 @@ class Post extends Component {
     }
 }
 
-// const mapStateToProps = ({posts}) => {
-//     return{
-//         pos
-//     }
-// }
-
 export default connect()(Post)

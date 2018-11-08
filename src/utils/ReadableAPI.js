@@ -47,6 +47,11 @@ export const getAllCategories = () =>
             .then(data => data)
 
 
+export const getPostComments = (id) =>
+            fetch(`${api}/posts/${id}/comments`, { headers })
+                  .then(res => res.json())
+                  .then(data => data)
+
 
 
 // export const get = (bookId) =>
