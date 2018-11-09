@@ -12,17 +12,15 @@ class PostPage extends Component {
     }
 
     render() {
-        const { post, posts, comments } = this.props
-        const postVoted = post.map(i => posts[i])
-
-        console.log('NEW LOG -> ', comments)
+        const { post, comments } = this.props
+        console.log('LOG -> ', post)
 
         return (
             <div>
                 <h4 className='center'>Pos Page Details</h4>
                 <div>
                     <h5 className='center'>Post</h5>
-                    {postVoted.map(v =>
+                    {post.map(v =>
                         <Post key={v.id}
                             author={v.author}
                             title={v.title}
@@ -49,11 +47,10 @@ class PostPage extends Component {
 
 function mapStateToProps({ posts, comments }, props) {
     const { id } = props.match.params
-    const post = Object.keys(posts).filter(post => posts[post].id === id)
+    const post = posts.filter(p => p.id === id)
     return {
         id,
         post,
-        posts,
         comments
     }
 }

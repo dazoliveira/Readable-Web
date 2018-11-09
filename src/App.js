@@ -20,9 +20,9 @@ class App extends Component {
       <div className='container'>
         <Nav />
         <Sidebar />
-        {/* <PostList /> */}
+        <PostList />
         {/* <NewPost /> */}
-        <PostPage match={{params:{ id: '8xf0y6ziyjabvozdd253nd' }}}/>
+        {/* <PostPage match={{params:{ id: '8xf0y6ziyjabvozdd253nd' }}}/> */}
       </div>
     );
   }

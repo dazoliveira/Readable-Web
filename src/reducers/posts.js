@@ -7,10 +7,15 @@ export default function posts(state = [], action) {
         case SORT_POSTS:
             return action.posts
         case UPDATE_VOTE_SCORE:
-            return {
-                ...state,
-                [Object.keys({ ...state }).filter(i => state[i].id === action.post.id)]: action.post
-            }
+            return state.map((item) => {
+                if (item.id === action.post.id) {
+                    return {
+                        ...item,
+                        ...action.post,
+                    }
+                }
+                return item
+            })
         case ADD_POST:
             return state.concat(action.post)
         default:
