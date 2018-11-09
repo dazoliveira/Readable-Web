@@ -89,12 +89,12 @@ class NewPost extends Component {
                         value={author}
                         onChange={this.handleChangeAuthor}
                     />
-                        <h5 className='center'>Select Category:</h5>
-                        <select className='select-field' value={category} onChange={this.handleChangeCategory}>
-                            <option value="react">React</option>
-                            <option value="redux">Redux</option>
-                            <option value="udacity">Udacity</option>
-                        </select>
+                    <h5 className='center'>Select Category:</h5>
+                    <select className='select-field' value={category} onChange={this.handleChangeCategory}>
+                        <option value="react">React</option>
+                        <option value="redux">Redux</option>
+                        <option value="udacity">Udacity</option>
+                    </select>
                     <button className='btn' type='submit' >
                         Submit
                     </button>

@@ -48,11 +48,21 @@ export const getAllCategories = () =>
 
 
 export const getPostComments = (id) =>
-            fetch(`${api}/posts/${id}/comments`, { headers })
-                  .then(res => res.json())
-                  .then(data => data)
+      fetch(`${api}/posts/${id}/comments`, { headers })
+            .then(res => res.json())
+            .then(data => data)
 
 
+export const updateCommentVote = (id, option) =>
+      fetch(`${api}/comments/${id}`, {
+            method: 'POST',
+            headers: {
+                  ...headers,
+                  'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ option })
+      }).then(res => res.json())
+            .then(data => data)
 
 // export const get = (bookId) =>
 //   fetch(`${api}/books/${bookId}`, { headers })

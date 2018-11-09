@@ -1,14 +1,10 @@
-import { RECEIVE_POSTS, ADD_POST } from '../actions/posts'
-import { SORT_POST_BY_DATE, SORT_POST_BY_SCORE, UPDATE_VOTE_SCORE } from '../actions/posts'
-
+import { RECEIVE_POSTS, ADD_POST, SORT_POSTS, UPDATE_VOTE_SCORE } from '../actions/posts'
 
 export default function posts(state = [], action) {
     switch (action.type) {
         case RECEIVE_POSTS:
             return action.posts
-        case SORT_POST_BY_DATE:
-            return action.posts
-        case SORT_POST_BY_SCORE:
+        case SORT_POSTS:
             return action.posts
         case UPDATE_VOTE_SCORE:
             return {

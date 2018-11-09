@@ -130,6 +130,60 @@ li {
   color: #00b5d6;
   cursor: pointer;
 }
+
+.comment {
+  width: 100%;
+  max-width: 590px;
+  padding: 10px;
+  display: flex;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.comment-info {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hacky but less typing in the video */
+.comment-info > div > span:first-child {
+  font-weight: bold;
+  margin-right: 5px;
+}
+.comment-info > div > span:nth-child(2) {
+  color: #969696;
+  font-size: 16px;
+}
+.comment-info > div > div {
+  color: #969696;
+  font-size: 15px;
+}
+.comment-info > div > p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+.comment-icons {
+  margin: 15px 15px 0 5px;
+  display: flex;
+  align-items: center;
+}
+.comment-icons > span {
+  color: #969696;
+  margin: 15px 15px 0 5px;
+  font-size: 18px !important;
+}
+.comment-icon {
+  font-size: 27px;
+  color: #697784;
+}
+.comment-icon:hover {
+  color: #00b5d6;
+  cursor: pointer;
+}
+
 .replying-to {
   border: none;
   background: transparent;

@@ -1,6 +1,5 @@
 export const RECEIVE_POSTS = "REICIVE_POSTS"
-export const SORT_POST_BY_DATE = "SORT_POST_BY_DATE"
-export const SORT_POST_BY_SCORE = "SORT_POST_BY_SCORE"
+export const SORT_POSTS = "SORT_POSTS"
 export const UPDATE_VOTE_SCORE = "UPDATE_VOTE_SCORE"
 export const ADD_POST = "ADD_POST"
 
@@ -12,16 +11,9 @@ export function receivePosts(posts) {
     }
 }
 
-export function sortPostByDate(posts) {
+export function sortPosts(posts) {
     return {
-        type: SORT_POST_BY_DATE,
-        posts,
-    }
-}
-
-export function sortPostByScore(posts) {
-    return {
-        type: SORT_POST_BY_SCORE,
+        type: SORT_POSTS,
         posts,
     }
 }
