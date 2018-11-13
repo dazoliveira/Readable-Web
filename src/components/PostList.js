@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
-import { sortPostByDate, sortPostByScore } from '../actions/posts'
+import { sortPosts } from '../actions/posts'
 
 class PostList extends Component {
 
@@ -22,16 +22,10 @@ class PostList extends Component {
         }
     }
 
-    sortByDate = () => {
-        const { posts } = this.state
-        const sorting = posts.sort((a, b) => b.timestamp - a.timestamp)
-        this.props.sortingPostsByDate(sorting)
-    }
-
-    sortByScore = () => {
+    sort = () => {
         const { posts } = this.state
         const sorting = posts.sort((a, b) => b.voteScore - a.voteScore)
-        this.props.sortingPostsByScore(sorting)
+        this.props.handleSortPosts(sorting)
     }
 
     render() {
@@ -41,9 +35,7 @@ class PostList extends Component {
             <div className='center'>
                 <h3>Time Line</h3>
                 <div>
-                    Srot by:
-                    <button onClick={this.sortByDate}>Date</button>
-                    <button onClick={this.sortByScore}>Score</button>
+                    <button onClick={this.sort}>Sort by Score</button>
                 </div>
                 <ul className='dashboard-list'>
                     {posts.map((v, i) => (
@@ -65,15 +57,13 @@ class PostList extends Component {
 
 const mapStateToProps = (state) => {
     const { posts } = state
-    const postsArry = Object.keys(posts).map(i => posts[i])
     return {
-        posts: postsArry
+        posts
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-     sortingPostsByDate: payload => dispatch(sortPostByDate(payload)),
-     sortingPostsByScore: payload => dispatch(sortPostByScore(payload))
+     handleSortPosts: payload => dispatch(sortPosts(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList)

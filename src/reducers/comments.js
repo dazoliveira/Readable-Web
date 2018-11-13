@@ -1,12 +1,19 @@
-import { RECEIVE_COMMENTS } from '../actions/comments'
+import { RECEIVE_COMMENTS, UPDATE_COMMENT_VOTE } from '../actions/comments'
 
-export default function posts(state = {}, action) {
+export default function comments(state = [], action) {
     switch (action.type) {
         case RECEIVE_COMMENTS:
-            return {
-                ...state,
-                ...action.comments
-            }
+            return action.comments
+        case UPDATE_COMMENT_VOTE:
+            return state.map((item) => {
+                if (item.id === action.comment.id) {
+                    return {
+                        ...item,
+                        ...action.comment,
+                    }
+                }
+                return item
+            })
         default:
             return state
     }

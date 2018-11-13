@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { votePost } from '../actions/shared'
+import { voteComment } from '../actions/shared'
 // import { TiArrowBackOutline,TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
 
-class Post extends Component {
+class Comment extends Component {
 
     toggleVote(e, id, option) {
         e.preventDefault()
-        this.props.dispatch(votePost(id, option))
+        this.props.dispatch(voteComment(id, option))
     }
 
     render() {
-        const { id, author, title, commentCount, voteScore } = this.props
+        const { id, author, voteScore, body } = this.props
 
         if (id === null) {
             return (
@@ -20,14 +20,11 @@ class Post extends Component {
         }
 
         return (
-            <div className='post'>
-                <div className='post-info'>
-                    <span>Title: {title}</span>
+            <div className='comment'>
+                <div className='comment-info'>
                     <span>Author: {author}</span>
-                    {this.props.body &&
-                    <span>Body: {this.props.body}</span> }
-                    <div className='post-icons'>
-                        <span>{`Comments: ${commentCount}`}</span>
+                    <span>{body}</span>
+                    <div className='comment-icons'>
                         <span>{`Votes: ${voteScore}`}</span>
                         <button onClick={(e) => this.toggleVote(e, id, 'upVote')}>Up</button>
                         <button onClick={(e) => this.toggleVote(e, id, 'downVote')}>Down</button>
@@ -38,4 +35,4 @@ class Post extends Component {
     }
 }
 
-export default connect()(Post)
+export default connect()(Comment)

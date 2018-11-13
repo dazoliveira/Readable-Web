@@ -5,12 +5,14 @@ import PostList from './components/PostList';
 import Sidebar from './components/Sidebar';
 import Nav from './components/Nav'
 import NewPost from './components/NewPost'
+import PostPage from './components/PostPage';
 
 class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(handlePosts())
     this.props.dispatch(handleCategories())
+    // this.props.dispatch(handleComments())
   }
 
   render() {
@@ -18,8 +20,9 @@ class App extends Component {
       <div className='container'>
         <Nav />
         <Sidebar />
-        {/* <PostList /> */}
-        <NewPost />
+        <PostList />
+        {/* <NewPost /> */}
+        {/* <PostPage match={{params:{ id: '8xf0y6ziyjabvozdd253nd' }}}/> */}
       </div>
     );
   }
