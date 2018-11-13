@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Post from './Post'
-import { sortPosts } from '../actions/posts'
 
 class PostList extends Component {
 
     state = {
-        postsSortByDate: [],
-        postsSortByScore: [],
-        order: '',
         posts: []
     }
 
-    componentDidMount() {
-        this.setState({ post: this.props.posts })
+    componentWillMount(){
+        this.setState({ posts: this.props.posts })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -25,11 +22,11 @@ class PostList extends Component {
     sort = () => {
         const { posts } = this.state
         const sorting = posts.sort((a, b) => b.voteScore - a.voteScore)
-        this.props.handleSortPosts(sorting)
+        this.setState({ posts: sorting })
     }
 
     render() {
-        const { posts } = this.props
+        const { posts } = this.state
 
         return (
             <div className='center'>
@@ -39,7 +36,7 @@ class PostList extends Component {
                 </div>
                 <ul className='dashboard-list'>
                     {posts.map((v, i) => (
-                            <li key={i}>
+                        <li key={i}>
                                 <Post
                                     author={v.author}
                                     title={v.title}
@@ -47,23 +44,18 @@ class PostList extends Component {
                                     commentCount={v.commentCount}
                                     id={v.id}
                                 />
-                            </li>
-                        ))}
+                        </li>
+                    ))}
                 </ul>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    const { posts } = state
+const mapStateToProps = ({posts}) => {
     return {
         posts
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-     handleSortPosts: payload => dispatch(sortPosts(payload)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostList)
+export default connect(mapStateToProps)(PostList)

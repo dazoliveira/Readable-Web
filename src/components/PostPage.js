@@ -13,7 +13,6 @@ class PostPage extends Component {
 
     render() {
         const { post, comments } = this.props
-        console.log('LOG -> ', post)
 
         return (
             <div>
@@ -46,10 +45,10 @@ class PostPage extends Component {
 }
 
 function mapStateToProps({ posts, comments }, props) {
-    const { id } = props.match.params
-    const post = posts.filter(p => p.id === id)
+    const { post_id } = props.match.params
+    const post = posts.filter(p => p.id === post_id)
     return {
-        id,
+        id: post_id,
         post,
         comments
     }
