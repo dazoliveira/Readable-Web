@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { voteComment } from '../actions/shared'
+import { voteComment, handleComments } from '../actions/shared'
 // import { TiArrowBackOutline,TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
 
 class Comment extends Component {
+
+    componentDidMount(){
+        this.props.dispatch(handleComments(this.props.id))
+    }
 
     toggleVote(e, id, option) {
         e.preventDefault()
@@ -11,13 +15,7 @@ class Comment extends Component {
     }
 
     render() {
-        const { id, author, voteScore, body } = this.props
-
-        if (id === null) {
-            return (
-                <p>No comments was found</p>
-            )
-        }
+        const { id, author, voteScore, body } = this.props.comments
 
         return (
             <div className='comment'>
@@ -35,4 +33,10 @@ class Comment extends Component {
     }
 }
 
-export default connect()(Comment)
+function mapStateToProps({ comments }){
+    return {
+        comments: comments || []
+    }
+}
+
+export default connect(mapStateToProps)(Comment)

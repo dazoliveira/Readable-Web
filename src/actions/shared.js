@@ -39,7 +39,7 @@ export function handleCategories() {
 }
 
 
-export function handlePostComments(id) {
+export function handleComments(id) {
     return (dispatch) => {
         return getPostComments(id)
             .then((data) => dispatch(receivePostComments(data)))

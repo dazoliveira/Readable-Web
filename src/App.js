@@ -5,16 +5,13 @@ import { handlePosts, handleCategories } from './actions/shared';
 import PostList from './components/PostList';
 import Sidebar from './components/Sidebar';
 import Nav from './components/Nav'
-import NewPost from './components/NewPost'
-import PostPage from './components/PostPage';
-import Category from './components/Category'
+import NewPost from './components/NewPost';
 
 class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(handlePosts())
     this.props.dispatch(handleCategories())
-    // this.props.dispatch(handleComments())
   }
 
   render() {
@@ -25,9 +22,9 @@ class App extends Component {
           <Sidebar />
           <div>
             <Route path='/' exact component={PostList} />
-            <Route path='/:category' component={Category}/>
-            <Route path='/:category/:post_id' exact component={PostPage} />
-            <Route path='/new' component={NewPost} />
+            <Route path='/:category' component={PostList}/>
+            <Route path='/:category/:post_id' exact component={PostList} />
+            <Route path='/new' exact component={NewPost} />
           </div>
         </div>
       </Router>
