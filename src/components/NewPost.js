@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import { addPosts } from '../actions/shared'
 import { newId, dateTime } from '../utils/helpers'
+
 
 class NewPost extends Component {
     state = {
@@ -12,8 +14,9 @@ class NewPost extends Component {
             title: '',
             body: '',
             author: '',
-            category: '',
-        }
+            category: 'react',
+        },
+        toHome:false
     }
 
     componentWillMount() {
@@ -61,11 +64,16 @@ class NewPost extends Component {
         const { dispatch } = this.props
         const { post } = this.state
         dispatch(addPosts(post))
+        this.setState({ toHome:true })
     }
 
     render() {
         // title, body, author,
         const { title, body, author, category } = this.state.post
+
+        if(this.state.toHome === true){
+           return <Redirect to='/'/>
+        }
 
         return (
             <div>

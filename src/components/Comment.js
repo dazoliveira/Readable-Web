@@ -15,7 +15,7 @@ class Comment extends Component {
 
         if (id === null) {
             return (
-                <p>No posts was found</p>
+                <p>No comments was found</p>
             )
         }
 

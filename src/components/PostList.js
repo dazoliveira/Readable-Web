@@ -9,7 +9,7 @@ class PostList extends Component {
         posts: []
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.setState({ posts: this.props.posts })
     }
 
@@ -37,6 +37,7 @@ class PostList extends Component {
                 <ul className='dashboard-list'>
                     {posts.map((v, i) => (
                         <li key={i}>
+                            <Link to={`/${v.category}/${v.id}`} exact>
                                 <Post
                                     author={v.author}
                                     title={v.title}
@@ -44,6 +45,7 @@ class PostList extends Component {
                                     commentCount={v.commentCount}
                                     id={v.id}
                                 />
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -52,7 +54,7 @@ class PostList extends Component {
     }
 }
 
-const mapStateToProps = ({posts}) => {
+const mapStateToProps = ({ posts }) => {
     return {
         posts
     }

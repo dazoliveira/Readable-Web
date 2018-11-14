@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Sidebar extends Component {
 
@@ -14,9 +14,9 @@ class Sidebar extends Component {
                 <ul className='dashboard-list'>
                     {categories.map((cat, i) => (
                         <li key={cat.name}>
-                        <NavLink to={`/${cat.name}`} exact activeClassName='active'>
+                        <Link to={`/${cat.name}`}>
                             {cat.name}
-                        </NavLink>
+                        </Link>
                         </li>
                     ))
                     }
