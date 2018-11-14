@@ -17,6 +17,18 @@ export const getAllPosts = () =>
             .then(data => data)
 
 
+export const getPostsPerCat = (category) =>
+      fetch(`${api}/${category}/posts`, { headers })
+            .then(res => res.json())
+            .then(data => data)
+
+
+export const getPostDetail = (id) =>
+      fetch(`${api}/posts/${id}`, { headers })
+            .then(res => res.json())
+            .then(data => data)
+
+
 export const updateVote = (id, option) =>
       fetch(`${api}/posts/${id}`, {
             method: 'POST',

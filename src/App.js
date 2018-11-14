@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { handlePosts, handleCategories } from './actions/shared';
 import PostList from './components/PostList';
-import Sidebar from './components/Sidebar';
+import Categories from './components/Cotegories';
 import Nav from './components/Nav'
 import NewPost from './components/NewPost'
 import PostPage from './components/PostPage';
-import Category from './components/Category'
 
 class App extends Component {
 
@@ -22,12 +21,12 @@ class App extends Component {
       <Router>
         <div className='container'>
           <Nav />
-          <Sidebar />
+          <Categories />
           <div>
             <Route path='/' exact component={PostList} />
-            <Route path='/:category' component={Category}/>
+            <Route path='/:category' component={PostList}/>
             <Route path='/:category/:post_id' exact component={PostPage} />
-            <Route path="/new" component={NewPost} />
+            <Route path="/new" exact component={NewPost} />
           </div>
         </div>
       </Router>

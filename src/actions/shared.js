@@ -1,6 +1,8 @@
 import { getAllPosts, getAllCategories, updateVote,
-    addPost, getPostComments, updateCommentVote } from '../utils/ReadableAPI'
-import { receivePosts, setVote, setPost } from './posts'
+    addPost, getPostComments, updateCommentVote, getPostsPerCat,
+    // getPostDetail 
+} from '../utils/ReadableAPI'
+import { receivePosts, setVote, setPost, postsPerCtegory, postDetail } from './posts'
 import { receiveCategories } from './categories'
 import { receivePostComments, setCommentVote } from './comments';
 
@@ -12,6 +14,12 @@ export function handlePosts() {
     }
 }
 
+export function handlePostsCat(category){
+    return (dispatch) => {
+        return getPostsPerCat(category)
+            .then(data => dispatch(postsPerCtegory(data)))
+    }
+}
 
 export function votePost(id, option) {
     return (dispatch) => {
@@ -22,7 +30,6 @@ export function votePost(id, option) {
     }
 }
 
-
 export function addPosts(post) {
     return (dispatch) => {
         return addPost(post)
@@ -30,6 +37,12 @@ export function addPosts(post) {
     }
 }
 
+// export function loadPostDetails(id){
+//     return (dispatch) => {
+//         return getPostDetail(id)
+//             .then((data) => dispatch(postDetail(data)))
+//     }
+// }
 
 export function handleCategories() {
     return (dispatch) => {

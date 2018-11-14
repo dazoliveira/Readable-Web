@@ -6,14 +6,14 @@ import Post from './Post'
 class PostList extends Component {
 
     state = {
-        posts: []
-    }
+        posts: [],
 
-    componentWillMount(){
-        this.setState({ posts: this.props.posts })
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.category) {
+            this.setState({ posts: nextProps.posts })
+        }
         if (nextProps.posts) {
             this.setState({ posts: nextProps.posts })
         }
@@ -27,7 +27,6 @@ class PostList extends Component {
 
     render() {
         const { posts } = this.state
-
         return (
             <div className='center'>
                 <h3>Time Line</h3>
@@ -37,13 +36,15 @@ class PostList extends Component {
                 <ul className='dashboard-list'>
                     {posts.map((v, i) => (
                         <li key={i}>
-                                <Post
-                                    author={v.author}
-                                    title={v.title}
-                                    voteScore={v.voteScore}
-                                    commentCount={v.commentCount}
-                                    id={v.id}
-                                />
+                        <Link to={`/${v.category}/${v.id}`}>
+                            <Post
+                                author={v.author}
+                                title={v.title}
+                                voteScore={v.voteScore}
+                                commentCount={v.commentCount}
+                                id={v.id}
+                            />
+                        </Link>
                         </li>
                     ))}
                 </ul>
@@ -52,8 +53,10 @@ class PostList extends Component {
     }
 }
 
-const mapStateToProps = ({posts}) => {
+const mapStateToProps = ({ posts }, props) => {
+    const { category } = props.match.params
     return {
+        category: category,
         posts
     }
 }

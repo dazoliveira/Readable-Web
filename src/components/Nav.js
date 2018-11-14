@@ -1,19 +1,30 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { handlePosts } from '../actions/shared'
 
-const nav = (props) => {
-    return(
-        <div className='nav'>
+class Nav extends Component {
+    onLoadPosts(){
+        this.props.dispatch(handlePosts())
+    }
+    render(){
+        return(
+            <div className='nav'>
             <ul>
                 <li>
-                    <NavLink to='/' exact activeClassName='active'> Home</NavLink>
+                    <Link to='/' onClick={() => this.onLoadPosts()}>
+                        Home
+                    </Link>
                 </li>
                 <li>
-                    <NavLink to='/new' exact activeClassName='active'> New Post</NavLink>
+                    <Link to='/new'>
+                        New Post
+                    </Link>
                 </li>
             </ul>
         </div>
-    )
+        )
+    }
 }
 
-export default nav
+export default connect()(Nav)

@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { handlePostsCat } from '../actions/shared'
 
-class Sidebar extends Component {
+class Categories extends Component {
+
+    changeCategories = (name) => {
+        this.props.dispatch(handlePostsCat(name))
+    }
 
     render() {
 
@@ -14,7 +19,9 @@ class Sidebar extends Component {
                 <ul className='dashboard-list'>
                     {categories.map((cat, i) => (
                         <li key={cat.name}>
-                        <NavLink to={`/${cat.name}`} exact activeClassName='active'>
+                        <NavLink to={`/${cat.name}`}
+                            exact activeClassName='active'
+                            onClick={() => this.changeCategories(cat.name)}>
                             {cat.name}
                         </NavLink>
                         </li>
@@ -26,12 +33,10 @@ class Sidebar extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { categories } = state
-    const catArry = Object.keys(categories).map(i => categories[i])
+const mapStateToProps = ({categories}) => {
     return {
-        categories: catArry
+        categories
     }
 }
 
-export default connect(mapStateToProps)(Sidebar)
+export default connect(mapStateToProps)(Categories)
