@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { handlePosts } from '../actions/shared';
 import Post from './Post'
 
 class PostList extends Component {
@@ -8,6 +9,9 @@ class PostList extends Component {
     state = {
         posts: [],
 
+    }
+    componentDidMount(){
+        this.props.dispatch(handlePosts())
     }
 
     componentWillReceiveProps(nextProps) {
