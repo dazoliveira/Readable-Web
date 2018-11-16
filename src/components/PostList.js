@@ -10,14 +10,8 @@ class PostList extends Component {
         posts: [],
 
     }
-    componentDidMount(){
-        this.props.dispatch(handlePosts())
-    }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.category) {
-            this.setState({ posts: nextProps.posts })
-        }
         if (nextProps.posts) {
             this.setState({ posts: nextProps.posts })
         }
@@ -31,9 +25,15 @@ class PostList extends Component {
 
     render() {
         const { posts } = this.state
+        const { all } = this.props
+        console.log('LOG -->', this.props.posts, ' - ', all, ' - ', posts)
+        // make this on father
         return (
             <div className='center'>
-                <h3>Time Line</h3>
+                {all
+                ?<h3>Time Line</h3>
+                :<div className='category'>Category:<strong> {this.props.category}</strong></div>
+                }
                 <div>
                     <button onClick={this.sort}>Sort by Score</button>
                 </div>
@@ -59,9 +59,10 @@ class PostList extends Component {
 
 const mapStateToProps = ({ posts }, props) => {
     const { category } = props.match.params
+    const postsCat = posts.filter(p => p.category === category && props.all === true)
     return {
         category: category,
-        posts
+        posts: postsCat.length > 0 || posts
     }
 }
 
