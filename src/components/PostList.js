@@ -1,37 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { sortPost } from '../actions/posts'
 import Post from './Post'
 
 class PostList extends Component {
 
-    state = {
-        posts: [],
+    sortBy = () => {
 
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.category) {
-            this.setState({ posts: nextProps.posts })
-        }
-        if (nextProps.posts) {
-            this.setState({ posts: nextProps.posts })
-        }
-    }
-
-    sort = () => {
-        const { posts } = this.state
-        const sorting = posts.sort((a, b) => b.voteScore - a.voteScore)
-        this.setState({ posts: sorting })
+        this.props.dispatch(sortPost())
     }
 
     render() {
-        const { posts } = this.state
+        const { all, posts } = this.props
+
         return (
             <div className='center'>
-                <h3>Time Line</h3>
+                {all
+                ?<h3>Time Line</h3>
+                :<div className='category'>Category:<strong> {this.props.category}</strong></div>
+                }
                 <div>
-                    <button onClick={this.sort}>Sort by Score</button>
+                    <button onClick={this.sortBy}>Sort by Score</button>
                 </div>
                 <ul className='dashboard-list'>
                     {posts.map((v, i) => (
@@ -53,10 +43,10 @@ class PostList extends Component {
     }
 }
 
-const mapStateToProps = ({ posts }, props) => {
-    const { category } = props.match.params
+const mapStateToProps = ({ posts, categories }, props) => {
+const { category } = props.match.params || ''
     return {
-        category: category,
+        category,
         posts
     }
 }
