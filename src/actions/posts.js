@@ -2,6 +2,7 @@ export const RECEIVE_POSTS = "REICIVE_POSTS"
 export const POSTS_PER_CATEGORIES = "POSTS_PER_CATEGORIES"
 export const UPDATE_VOTE_SCORE = "UPDATE_VOTE_SCORE"
 export const ADD_POST = "ADD_POST"
+export const SORT_POST_BY_VOTES = "SORT_POST_BY_VOTES"
 // export const POST_DETAIL = "POST_DETAIL"
 
 
@@ -9,6 +10,12 @@ export function receivePosts(posts) {
     return {
         type: RECEIVE_POSTS,
         posts,
+    }
+}
+
+export function sortPost(){
+    return {
+        type: SORT_POST_BY_VOTES
     }
 }
 

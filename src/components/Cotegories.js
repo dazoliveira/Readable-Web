@@ -19,11 +19,12 @@ class Categories extends Component {
                 <ul className='dashboard-list'>
                     {categories.map((cat, i) => (
                         <li key={cat.name}>
-                        <NavLink to={`/${cat.name}`}
-                            exact activeClassName='active'
-                            onClick={() => this.changeCategories(cat.name)}>
-                            {cat.name}
-                        </NavLink>
+                            <NavLink to={`/${cat.name}`}
+                                exact activeClassName='active'
+                                onClick={() => this.changeCategories(cat.name)}
+                            >
+                                {cat.name}
+                            </NavLink>
                         </li>
                     ))
                     }
@@ -33,7 +34,7 @@ class Categories extends Component {
     }
 }
 
-const mapStateToProps = ({categories}) => {
+const mapStateToProps = ({ categories }) => {
     return {
         categories
     }
