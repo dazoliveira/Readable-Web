@@ -16,7 +16,7 @@ class PostPerCat extends Component {
 
         const cat = categories.filter(c => c.name === category)
 
-        if (cat.length === 0) {
+        if (cat.length === 0 ) {
             return ''
         }
 
@@ -36,6 +36,7 @@ class PostPerCat extends Component {
                                     voteScore={v.voteScore}
                                     commentCount={v.commentCount}
                                     id={v.id}
+                                    disable={v.deleted}
                                 />
                             </Link>
                         </li>

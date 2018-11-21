@@ -7,7 +7,6 @@ import Post from './Post'
 class PostList extends Component {
 
     sortBy = () => {
-
         this.props.dispatch(sortPost())
     }
 
@@ -33,6 +32,7 @@ class PostList extends Component {
                                 voteScore={v.voteScore}
                                 commentCount={v.commentCount}
                                 id={v.id}
+                                disable={v.deleted}
                             />
                         </Link>
                         </li>
