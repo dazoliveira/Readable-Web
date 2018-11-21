@@ -3,6 +3,7 @@ export const POSTS_PER_CATEGORIES = "POSTS_PER_CATEGORIES"
 export const UPDATE_VOTE_SCORE = "UPDATE_VOTE_SCORE"
 export const ADD_POST = "ADD_POST"
 export const SORT_POST_BY_VOTES = "SORT_POST_BY_VOTES"
+export const DISABLE_POST = "DISABLE_POST"
 // export const POST_DETAIL = "POST_DETAIL"
 
 
@@ -36,6 +37,13 @@ export function setVote(post){
 export function setPost(post){
     return {
         type: ADD_POST,
+        post,
+    }
+}
+
+export function disablePost(post){
+    return{
+        type: DISABLE_POST,
         post,
     }
 }

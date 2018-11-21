@@ -3,7 +3,8 @@ import {
     ADD_POST,
     UPDATE_VOTE_SCORE,
     POSTS_PER_CATEGORIES,
-    SORT_POST_BY_VOTES
+    SORT_POST_BY_VOTES,
+    DISABLE_POST
 } from '../actions/posts'
 
 export default function posts(state = [], action) {
@@ -14,7 +15,7 @@ export default function posts(state = [], action) {
             return action.posts
         case SORT_POST_BY_VOTES:
             const result = state.sort((a, b) => b.voteScore - a.voteScore)
-            return [ ...result]
+            return [...result]
         case UPDATE_VOTE_SCORE:
             return state.map((item) => {
                 if (item.id === action.post.id) {
@@ -27,6 +28,16 @@ export default function posts(state = [], action) {
             })
         case ADD_POST:
             return state.concat(action.post)
+        case DISABLE_POST:
+            return state.map((item) => {
+                if (item.id === action.post.id) {
+                    return {
+                        ...item,
+                        ...action.post,
+                    }
+                }
+                return item
+            })
         default:
             return state
     }

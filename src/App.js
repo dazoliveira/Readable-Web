@@ -8,6 +8,7 @@ import Nav from './components/Nav'
 import NewPost from './components/NewPost'
 import PosPerCat from './components/PostPerCat'
 import PostPage from './components/PostPage';
+import NotFound from './components/NotFound';
 
 class App extends Component {
 
@@ -43,6 +44,11 @@ class App extends Component {
               path='/:category/:post_id'
               exact
               component={PostPage}
+            />
+            <Route
+              path='/404'
+              exact
+              component={NotFound}
             />
           </div>
         </div>
