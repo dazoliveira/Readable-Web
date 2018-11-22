@@ -7,7 +7,8 @@ import {
     updateCommentVote,
     getPostsPerCat,
     removePost,
-    removeComment
+    removeComment,
+    newComment,
 } from '../utils/ReadableAPI'
 import {
     receivePosts,
@@ -18,7 +19,8 @@ import {
     disablePost
 } from './posts'
 import { receiveCategories } from './categories'
-import { receivePostComments, setCommentVote, disableComment } from './comments';
+import { receivePostComments, setCommentVote, disableComment, setComment } from './comments';
+import NewComment from '../components/NewComment';
 
 
 export function handlePosts() {
@@ -86,6 +88,13 @@ export function voteComment(id, option) {
             .then((data) => {
                 dispatch(setCommentVote(data))
             })
+    }
+}
+
+export function addComment(comment){
+    return (dispatch) => {
+        return newComment(comment)
+            .then((data) => dispatch(setComment(data)))
     }
 }
 

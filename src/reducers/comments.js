@@ -1,4 +1,9 @@
-import { RECEIVE_COMMENTS, UPDATE_COMMENT_VOTE, DELETE_COMMENT } from '../actions/comments'
+import {
+    RECEIVE_COMMENTS,
+    UPDATE_COMMENT_VOTE,
+    DELETE_COMMENT,
+    ADD_COMMENT,
+} from '../actions/comments'
 
 export default function comments(state = [], action) {
     switch (action.type) {
@@ -14,6 +19,8 @@ export default function comments(state = [], action) {
                 }
                 return item
             })
+        case ADD_COMMENT:
+            return state.concat(action.comment)
         case DELETE_COMMENT:
             return state.map((item) => {
                 if (item.id === action.comment.id) {
