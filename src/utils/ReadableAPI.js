@@ -98,6 +98,19 @@ export const removeComment = (id) =>
       }).then(res => res.json())
             .then(data => data)
 
+
+export const newComment = (comment) =>
+      fetch(`${api}/comments`, {
+            method: 'POST',
+            headers: {
+                  ...headers,
+                  'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+      }).then(res => res.json())
+            .then(data => data)
+
+
 // export const get = (bookId) =>
 //   fetch(`${api}/books/${bookId}`, { headers })
 //     .then(res => res.json())
