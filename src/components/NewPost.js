@@ -75,7 +75,7 @@ class NewPost extends Component {
         }
 
         return (
-            <div>
+            <div className='center-post'>
                 <h4 className='center'>Compose New Post</h4>
                 <form className='new-post' onSubmit={this.handleSubmit}>
                     <input

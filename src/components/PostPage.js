@@ -5,7 +5,7 @@ import { handlePostComments } from '../actions/shared'
 import Post from './Post'
 import Comment from './Comment'
 import NewComment from './NewComment'
-import NotFound from './NotFound';
+
 
 class PostPage extends Component {
 
@@ -23,7 +23,7 @@ class PostPage extends Component {
         this.setState({ addComment: true })
     }
 
-    frmBlinde(value){
+    frmBlinde(value) {
         this.setState({ addComment: value })
     }
 
@@ -35,9 +35,15 @@ class PostPage extends Component {
     render() {
         const { post, comments, id } = this.props
 
+        if (post.length === 0) {
+            return (
+                <Redirect to='/404' />
+            )
+        }
+
         return (
-            <div>
-                <h4 className='center'>Post Page Details</h4>
+            <div className='center-post'>
+                <h4>Post Page Details</h4>
                 <div>
                     <h5 className='center'>Post</h5>
                     {post.map(v =>
@@ -57,10 +63,10 @@ class PostPage extends Component {
                 <div>
                     <h5 className='center'>Comments <button onClick={(e) => this.addComment(e, id)}>add.</button></h5>
                     {this.state.addComment && (
-                            <NewComment 
-                                hideFrm={(value) => this.frmBlinde(value)}
-                                parentId={id}
-                            />
+                        <NewComment
+                            hideFrm={(value) => this.frmBlinde(value)}
+                            parentId={id}
+                        />
                     )}
                     {comments.map(v =>
                         <Comment key={v.id}

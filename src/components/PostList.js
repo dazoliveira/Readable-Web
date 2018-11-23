@@ -14,7 +14,7 @@ class PostList extends Component {
         const { all, posts } = this.props
 
         return (
-            <div className='center'>
+            <div className='center-post'>
                 {all
                 ?<h3>Time Line</h3>
                 :<div className='category'>Category:<strong> {this.props.category}</strong></div>

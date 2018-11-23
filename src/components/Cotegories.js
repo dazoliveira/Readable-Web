@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { handlePostsCat } from '../actions/shared'
 
 class Categories extends Component {
@@ -19,12 +19,12 @@ class Categories extends Component {
                 <ul className='dashboard-list'>
                     {categories.map((cat, i) => (
                         <li key={cat.name}>
-                            <NavLink to={`/${cat.name}`}
+                            <Link to={`/${cat.name}`}
                                 exact activeClassName='active'
                                 onClick={() => this.changeCategories(cat.name)}
                             >
                                 {cat.name}
-                            </NavLink>
+                            </Link>
                         </li>
                     ))
                     }

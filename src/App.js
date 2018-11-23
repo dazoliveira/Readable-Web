@@ -15,10 +15,10 @@ class App extends Component {
   componentDidMount() {
     this.props.dispatch(handlePosts())
     this.props.dispatch(handleCategories())
-    // this.props.dispatch(handleComments())
   }
 
   render() {
+
     return (
       <Router>
         <div className='container'>
