@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { votePost, deletePost, handlePostComments } from '../actions/shared'
+import { votePost, deletePost } from '../actions/shared'
 import EditPost from './EditPost'
 // import { TiArrowBackOutline,TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
 

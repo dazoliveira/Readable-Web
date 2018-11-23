@@ -2,6 +2,7 @@ export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS"
 export const UPDATE_COMMENT_VOTE = "UPDATE_COMMENT_VOTE"
 export const DELETE_COMMENT = "DELETE_COMMENT"
 export const ADD_COMMENT = "ADD_COMMENT"
+export const EDIT_COMMENT = "EDIT_COMMENT"
 
 export function receivePostComments(comments){
     return{
@@ -27,6 +28,13 @@ export function disableComment(comment){
 export function setComment(comment){
     return {
         type: ADD_COMMENT,
+        comment,
+    }
+}
+
+export function setEditComment(comment){
+    return {
+        type: EDIT_COMMENT,
         comment,
     }
 }

@@ -3,6 +3,7 @@ import {
     UPDATE_COMMENT_VOTE,
     DELETE_COMMENT,
     ADD_COMMENT,
+    EDIT_COMMENT,
 } from '../actions/comments'
 
 export default function comments(state = [], action) {
@@ -24,6 +25,16 @@ export default function comments(state = [], action) {
         case DELETE_COMMENT:
             return state.map((item) => {
                 if (item.id === action.comment.id) {
+                    return {
+                        ...item,
+                        ...action.comment,
+                    }
+                }
+                return item
+            })
+        case EDIT_COMMENT:
+            return state.map(item => {
+                if (item.id === action.id) {
                     return {
                         ...item,
                         ...action.comment,

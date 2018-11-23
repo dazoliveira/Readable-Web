@@ -27,6 +27,11 @@ class PostPage extends Component {
         this.setState({ addComment: value })
     }
 
+    receiveEdit = () => {
+        const { id } = this.props
+        this.props.dispatch(handlePostComments(id))
+    }
+
     render() {
         const { post, comments, id } = this.props
 
@@ -64,6 +69,7 @@ class PostPage extends Component {
                             body={v.body}
                             id={v.id}
                             disable={v.deleted}
+                            sendEdition={this.receiveEdit}
                         />
                     )}
                 </div>
