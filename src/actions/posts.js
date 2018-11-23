@@ -4,7 +4,7 @@ export const UPDATE_VOTE_SCORE = "UPDATE_VOTE_SCORE"
 export const ADD_POST = "ADD_POST"
 export const SORT_POST_BY_VOTES = "SORT_POST_BY_VOTES"
 export const DISABLE_POST = "DISABLE_POST"
-// export const POST_DETAIL = "POST_DETAIL"
+export const EDIT_POST = "EDIT_POST"
 
 
 export function receivePosts(posts) {
@@ -48,11 +48,11 @@ export function disablePost(post){
     }
 }
 
-// export function postDetail(post){
-//     return{
-//         type: POST_DETAIL,
-//         post,
-//     }
-// }
+export function setEditPost(post){
+    return{
+        type: EDIT_POST,
+        post,
+    }
+}
 
 

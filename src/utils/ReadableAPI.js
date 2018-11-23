@@ -64,6 +64,18 @@ export const removePost = (id) =>
             .then(data => data)
 
 
+export const changePost = (post, id) =>
+      fetch(`${api}/posts/${id}`, {
+            method: 'PUT',
+            headers: {
+                  ...headers,
+                  'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(post)
+      }).then(res => res.json())
+            .then(data => data)
+
+
 export const getAllCategories = () =>
       fetch(`${api}/categories`, { headers })
             .then(res => res.json())

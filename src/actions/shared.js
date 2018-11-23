@@ -9,6 +9,7 @@ import {
     removePost,
     removeComment,
     newComment,
+    changePost,
 } from '../utils/ReadableAPI'
 import {
     receivePosts,
@@ -16,7 +17,8 @@ import {
     setPost,
     postsPerCtegory,
     postDetail,
-    disablePost
+    disablePost,
+    setEditPost,
 } from './posts'
 import { receiveCategories } from './categories'
 import { receivePostComments, setCommentVote, disableComment, setComment } from './comments';
@@ -60,12 +62,12 @@ export function deletePost(id) {
     }
 }
 
-// export function loadPostDetails(id){
-//     return (dispatch) => {
-//         return getPostDetail(id)
-//             .then((data) => dispatch(postDetail(data)))
-//     }
-// }
+export function editPost(post, id){
+    return (dispatch) => {
+        return changePost(post, id)
+            .then((data) => dispatch(setEditPost(data)))
+    }
+}
 
 export function handleCategories() {
     return (dispatch) => {

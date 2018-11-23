@@ -33,6 +33,8 @@ class PostList extends Component {
                                 commentCount={v.commentCount}
                                 id={v.id}
                                 disable={v.deleted}
+                                body={v.body}
+                                detail={false}
                             />
                         </Link>
                         </li>
