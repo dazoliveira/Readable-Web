@@ -4,7 +4,8 @@ import {
     UPDATE_VOTE_SCORE,
     POSTS_PER_CATEGORIES,
     SORT_POST_BY_VOTES,
-    DISABLE_POST
+    DISABLE_POST,
+    EDIT_POST,
 } from '../actions/posts'
 
 export default function posts(state = [], action) {
@@ -31,6 +32,16 @@ export default function posts(state = [], action) {
         case DISABLE_POST:
             return state.map((item) => {
                 if (item.id === action.post.id) {
+                    return {
+                        ...item,
+                        ...action.post,
+                    }
+                }
+                return item
+            })
+        case EDIT_POST:
+            return state.map((item) => {
+                if(item.id === action.post.id){
                     return {
                         ...item,
                         ...action.post,

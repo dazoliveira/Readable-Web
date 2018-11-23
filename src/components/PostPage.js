@@ -44,6 +44,7 @@ class PostPage extends Component {
                             body={v.body}
                             id={v.id}
                             disable={v.deleted}
+                            detail={true}
                         />
                     )
                     }
