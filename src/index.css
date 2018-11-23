@@ -43,6 +43,11 @@ a {
   padding:5px;
 }
 
+.center-post{
+  margin-top: -115px;
+  text-align: center;
+}
+
 .center {
   text-align: center;
 }

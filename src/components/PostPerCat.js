@@ -21,7 +21,7 @@ class PostPerCat extends Component {
         }
 
         return (
-            <div className='center'>
+            <div className='center-post'>
                 <div className='category'>Category:<strong> {category}</strong></div>
                 <div>
                     <button onClick={this.sortBy}>Sort by Score</button>
