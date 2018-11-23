@@ -20,7 +20,6 @@ class EditPost extends Component {
                 body
             }
         }))
-        console.log('DATA: ', body)
     }
 
     stopEvent(e){

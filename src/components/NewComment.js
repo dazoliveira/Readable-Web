@@ -55,7 +55,7 @@ import { addComment } from '../actions/shared'
 
         render() {
 
-            const { id, timestamp, body, author, parentId } = this.state.comment
+            const { body, author } = this.state.comment
 
             return (
                 <div className='comment'>

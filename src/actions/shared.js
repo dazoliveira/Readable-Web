@@ -10,19 +10,24 @@ import {
     removeComment,
     newComment,
     changePost,
+    changeComment,
 } from '../utils/ReadableAPI'
 import {
     receivePosts,
     setVote,
     setPost,
     postsPerCtegory,
-    postDetail,
     disablePost,
     setEditPost,
 } from './posts'
 import { receiveCategories } from './categories'
-import { receivePostComments, setCommentVote, disableComment, setComment } from './comments';
-import NewComment from '../components/NewComment';
+import {
+    receivePostComments,
+    setCommentVote,
+    disableComment,
+    setComment,
+    setEditComment
+} from './comments';
 
 
 export function handlePosts() {
@@ -62,7 +67,7 @@ export function deletePost(id) {
     }
 }
 
-export function editPost(post, id){
+export function editPost(post, id) {
     return (dispatch) => {
         return changePost(post, id)
             .then((data) => dispatch(setEditPost(data)))
@@ -93,18 +98,25 @@ export function voteComment(id, option) {
     }
 }
 
-export function addComment(comment){
+export function addComment(comment) {
     return (dispatch) => {
         return newComment(comment)
             .then((data) => dispatch(setComment(data)))
     }
 }
 
-export function deleteComment(id){
+export function deleteComment(id) {
     return (dispatch) => {
         return removeComment(id)
-            .then(data =>{
+            .then(data => {
                 dispatch(disableComment(data))
             })
+    }
+}
+
+export function editComment(id, comment) {
+    return (dispatch) => {
+        return changeComment(id, comment)
+            .then((data) => dispatch(setEditComment(data)))
     }
 }
