@@ -6,7 +6,7 @@ import {
     DISABLE_POST,
     EDIT_POST,
 } from '../actions/posts'
-import { RECEIVE_COMMENTS, ADD_COMMENT, DELETE_COMMENT } from '../actions/comments';
+import { ADD_COMMENT, DELETE_COMMENT } from '../actions/comments';
 
 export default function posts(state = [], action) {
     switch (action.type) {

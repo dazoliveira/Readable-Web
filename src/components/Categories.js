@@ -20,7 +20,6 @@ class Categories extends Component {
                     {categories.map((cat, i) => (
                         <li key={cat.name}>
                             <Link to={`/${cat.name}`}
-                                exact activeClassName='active'
                                 onClick={() => this.changeCategories(cat.name)}
                             >
                                 {cat.name}
