@@ -14,16 +14,16 @@ export function receivePosts(posts) {
     }
 }
 
-export function sortPost(){
-    return {
-        type: SORT_POST_BY_VOTES
+export function postsPerCtegory(posts){
+    return{
+        type: RECEIVE_POSTS,
+        posts,
     }
 }
 
-export function postsPerCtegory(posts){
-    return{
-        type: POSTS_PER_CATEGORIES,
-        posts,
+export function sortPost(){
+    return {
+        type: SORT_POST_BY_VOTES
     }
 }
 
