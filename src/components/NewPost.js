@@ -62,16 +62,22 @@ class NewPost extends Component {
         e.preventDefault()
         const { dispatch } = this.props
         const { post } = this.state
-        dispatch(addPosts(post))
-        this.setState({ toHome: true })
+        if (post.author && post.body && post.title && post.category) {
+            dispatch(addPosts(post))
+            this.setState({ toHome: true })
+        }
+        else {
+            this.setState({ toHome: false })
+            alert('Make sure if any fields is not empty')
+        }
     }
 
     render() {
         // title, body, author,
         const { title, body, author, category } = this.state.post
 
-        if(this.state.toHome === true){
-          return  <Redirect to='/'/>
+        if (this.state.toHome === true) {
+            return <Redirect to='/' />
         }
 
         return (
@@ -79,18 +85,21 @@ class NewPost extends Component {
                 <h4 className='center'>Compose New Post</h4>
                 <form className='new-post' onSubmit={this.handleSubmit}>
                     <input
+                        required={true}
                         placeholder="Title..."
                         className='input-field'
                         value={title}
                         onChange={this.handleChangeTitle}
                     />
                     <textarea
+                        required={true}
                         placeholder="Message..."
                         className='textarea'
                         value={body}
                         onChange={this.handleChangeBody}
                     />
                     <input
+                        required={true}
                         placeholder="Author..."
                         className='input-field'
                         value={author}
