@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { handlePostComments } from '../actions/shared'
 import Post from './Post'
 import Comment from './Comment'
@@ -14,8 +13,7 @@ class PostPage extends Component {
     }
 
     componentDidMount() {
-        const { id } = this.props
-        this.props.dispatch(handlePostComments(id))
+        this.props.dispatch(handlePostComments(this.props.match.params.post_id))
     }
 
     addComment(e, id) {
@@ -28,16 +26,18 @@ class PostPage extends Component {
     }
 
     receiveEdit = () => {
-        const { id } = this.props
-        this.props.dispatch(handlePostComments(id))
+        this.props.dispatch(handlePostComments(this.props.match.params.post_id))
     }
 
     render() {
-        const { post, comments, id } = this.props
+        const { post, comments } = this.props
+        const { post_id } = this.props.match.params
 
-        if (post.length === 0) {
+        if (!post) {
             return (
-                <Redirect to='/404' />
+                <h3 className='center'>
+                    Page 404 (the post was not found)! Please try again later or diferent URL
+                </h3>
             )
         }
 
@@ -46,26 +46,25 @@ class PostPage extends Component {
                 <h4>Post Page Details</h4>
                 <div>
                     <h5 className='center'>Post</h5>
-                    {post.map(v =>
-                        <Post key={v.id}
-                            author={v.author}
-                            title={v.title}
-                            voteScore={v.voteScore}
-                            commentCount={v.commentCount}
-                            body={v.body}
-                            id={v.id}
-                            disable={v.deleted}
+                    {post && (
+                        <Post key={post.id}
+                            author={post.author}
+                            title={post.title}
+                            voteScore={post.voteScore}
+                            commentCount={post.commentCount}
+                            body={post.body}
+                            id={post.id}
+                            disable={post.deleted}
                             detail={true}
                         />
-                    )
-                    }
+                    )}
                 </div>
                 <div>
-                    <h5 className='center'>Comments <button onClick={(e) => this.addComment(e, id)}>add.</button></h5>
+                    <h5 className='center'>Comments <button onClick={(e) => this.addComment(e, post_id)}>add.</button></h5>
                     {this.state.addComment && (
                         <NewComment
                             hideFrm={(value) => this.frmBlinde(value)}
-                            parentId={id}
+                            parentId={post_id}
                         />
                     )}
                     {comments.map(v =>
@@ -84,15 +83,9 @@ class PostPage extends Component {
     }
 }
 
-function mapStateToProps({ posts, comments }, props) {
-    const { post_id } = props.match.params
-    const post = posts.filter(p => p.id === post_id)
-
-    return {
-        post,
-        comments,
-        id: post_id
-    }
-}
+const mapStateToProps = ({ posts, comments }, { match }) => ({
+    post: posts ? posts.find(p => p.id === match.params.post_id) : {},
+    comments,
+});
 
 export default connect(mapStateToProps)(PostPage)
