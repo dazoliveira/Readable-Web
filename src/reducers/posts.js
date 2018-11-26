@@ -6,6 +6,7 @@ import {
     DISABLE_POST,
     EDIT_POST,
 } from '../actions/posts'
+import { RECEIVE_COMMENTS, ADD_COMMENT, DELETE_COMMENT } from '../actions/comments';
 
 export default function posts(state = [], action) {
     switch (action.type) {
@@ -27,6 +28,8 @@ export default function posts(state = [], action) {
         case ADD_POST:
             return state.concat(action.post)
         case DISABLE_POST:
+            return state.filter(item => item.id !== action.post.id)
+        case EDIT_POST:
             return state.map((item) => {
                 if (item.id === action.post.id) {
                     return {
@@ -36,13 +39,17 @@ export default function posts(state = [], action) {
                 }
                 return item
             })
-        case EDIT_POST:
-            return state.map((item) => {
-                if(item.id === action.post.id){
-                    return {
-                        ...item,
-                        ...action.post,
-                    }
+        case ADD_COMMENT:
+            return state.map(item => {
+                if (item.id === action.comment.parentId) {
+                    item.commentCount = item.commentCount + 1
+                }
+                return item
+            })
+        case DELETE_COMMENT:
+            return state.map(item => {
+                if (item.id === action.comment.parentId) {
+                    item.commentCount = item.commentCount - 1
                 }
                 return item
             })
