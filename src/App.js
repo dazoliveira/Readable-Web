@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { handlePosts, handleCategories } from './actions/shared';
 import PostList from './components/PostList';
-import Categories from './components/Cotegories';
+import Categories from './components/Categories';
 import Nav from './components/Nav'
 import NewPost from './components/NewPost'
 import PosPerCat from './components/PostPerCat'
